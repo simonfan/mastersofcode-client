@@ -1,0 +1,80 @@
+/* Empty. Add your own CSS if you like */
+.scale-in {
+	-webkit-transform: scale(0.8);
+  	transform: scale(0.8);
+  	opacity: 0;
+}
+.scale-in.ng-enter,
+.scale-in > .ng-enter {
+	-webkit-transition: all cubic-bezier(.1, .7, .1, 1) 400ms;
+ 	transition: all cubic-bezier(.1, .7, .1, 1) 400ms;
+}
+.scale-in.ng-enter-active,
+.scale-in > .ng-enter-active {
+	-webkit-transform: scale(1);
+ 	transform: scale(1);
+	opacity: 1;
+}
+.scale-in.ng-leave,
+.scale-in > .ng-leave {
+	-webkit-transition: all ease-in-out 250ms;
+ 	transition: all ease-in-out 250ms;
+}
+
+
+
+.bottom-panel {
+	position: fixed;
+
+	width: 100%;
+	bottom: 0px;
+}
+
+.bottom-panel button.button.button-block {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+
+#phone-form {
+	text-align: center;
+}
+
+#phone-form input {
+	margin-top: 15%;
+	width: 100%;
+	font-size: 30px;
+	line-height: 35px;
+	height: 60px;
+
+	text-align: center;
+
+	border-bottom: 1px solid #dedede;
+}
+
+
+
+
+/* spin! */
+/* Hack for ionicicons v2 (no animation code) */
+.ion-spin-animation { -webkit-animation: spin 1s infinite linear; -moz-animation: spin 1s infinite linear; -o-animation: spin 1s infinite linear; animation: spin 1s infinite linear; }
+
+@-moz-keyframes spin { 0% { -moz-transform: rotate(0deg); }
+    100% { -moz-transform: rotate(359deg); } }
+@-webkit-keyframes spin { 0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(359deg); } }
+@-o-keyframes spin { 0% { -o-transform: rotate(0deg); }
+    100% { -o-transform: rotate(359deg); } }
+@-ms-keyframes spin { 0% { -ms-transform: rotate(0deg); }
+    100% { -ms-transform: rotate(359deg); } }
+@keyframes spin { 0% { transform: rotate(0deg); }
+    100% { transform: rotate(359deg); } }
+.ion-load-a.ion-spin-animation { -webkit-animation-timing-function: steps(8, start); -moz-animation-timing-function: steps(8, start); animation-timing-function: steps(8, start); }
+
+
+
+
+#loading-modal .spinner svg {
+	width: 70px;
+	height: 70px;
+}

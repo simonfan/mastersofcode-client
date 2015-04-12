@@ -1,0 +1,25 @@
+<ion-modal-view id="loading-modal" ng-controller="LoadingCtrl" cache-view="false">
+	<ion-header-bar>
+		<h1 class="title">{{ currentStep.title }}</h1>
+		<div class="buttons">
+			<button class="button button-clear" ng-click="hide()">fechar</button>
+		</div>
+	</ion-header-bar>
+	<ion-content class="has-header" scroll="false" padding="true">
+
+		<div class="row row-center">
+
+			<div class="col col-center">
+				<ion-spinner icon="spiral"></ion-spinner>
+			</div>
+
+		</div>
+		<div class="row row-center">
+			<div class="col col-center">
+
+				{{ currentStep.label }}
+				
+			</div>
+		</div>
+	</ion-content>
+</ion-modal-view>
