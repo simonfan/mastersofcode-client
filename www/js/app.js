@@ -135,8 +135,8 @@ angular.module('semPagar',
 		url: "/payments/:paymentId",
 		views: {
 			menuContent: {
-				templateUrl: "templates/payment.html",
-				controller: 'PaymentCtrl'
+				templateUrl: "templates/payments.html",
+				controller: 'PaymentsCtrl'
 			}
 		},
     	authenticate: true

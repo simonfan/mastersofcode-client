@@ -75,11 +75,26 @@
 
 
 #loading-modal .spinner svg {
-	width: 70px;
-	height: 70px;
+	width: 120px !important;
+	height: 120px !important;
 }
 
+/*Spinner!!*/
+#loading-modal .spinner svg {
+	stroke: #EEBB00 !important;
+	margin-bottom: 10%;
+}
+#loading-modal .spinner svg .stop1 {
+	stop-color: #EEBB00 !important;
+}
+#loading-modal .spinner svg .stop2 {
+	stop-color: #EEBB00 !important;
+}
 
+#loading-modal ion-content {
+	text-align: center;
+	padding-top: 15%;
+}
 
 
 /*FORMS*/
@@ -112,4 +127,88 @@
 #total-card {
 	margin-top: -1px;
 	font-weight: bold;
+}
+
+
+
+
+/*LOADING*/
+#loading-modal {
+	transition: background-color .5s;
+}
+#loading-modal.fail {
+	background-color: red;
+}
+
+#loading-modal.loading {
+	background-color: #efefef;
+}
+
+#loading-modal.success {
+	background-color: green;
+}
+
+
+
+#payments-list .ion-close {
+	color: red;
+}
+
+#payments-list .ion-checkmark {
+	color: green;
+}
+
+#payments-list .ion-clock {
+	color: #ddd;
+}
+
+#payments-list .ion-load-d {
+	-webkit-animation: spin 2s infinite linear; -moz-animation: spin 2s infinite linear; -o-animation: spin 2s infinite linear; animation: spin 2s infinite linear; 
+	color: #cdcdcd;
+}
+
+#payments-list .date {
+	font-size: 13px;
+	color: #aaa;
+}
+
+#payments-list .price {
+	font-size: 27px;
+	line-height: 31px;
+	font-weight: semibold;
+
+	margin-top: 6px;
+	margin-bottom: 6px;
+}
+
+#payments-list .description {
+	font-size: 17px;
+}
+
+.bar-energized {
+	color: #000 !important;
+}
+
+.button-energized {
+	color: #000 !important;
+}
+
+/*.bar-stable {
+	background-color: #EDBA10 !important;
+}
+
+.button-positive {
+	background-color: #816502;
+	border-color: #816502;
+}*/
+
+
+#success-logo-wrapper {
+	padding-top: 20px;
+	text-align: center;
+}
+
+#success-logo-wrapper > .ion-checkmark-circled {
+	font-size: 100px;
+	color: #33cd5f;
 }

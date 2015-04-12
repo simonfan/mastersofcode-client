@@ -4,7 +4,7 @@
 		</button>
 	</ion-nav-buttons>
 	<div class="bar bar-subheader">
-		<button class="button button-positive button-block" ng-click="openCharge()">
+		<button class="button button-energized button-block" ng-click="openCharge()">
 			Nova cobrança
 		</button>
 	</div>
@@ -14,11 +14,25 @@
 		<ion-list id="payments-list">
 
 			<ion-item 
-				class="card"
+				class="card item item-icon-right item-text-wrap"
 				ng-repeat="payment in payments"
-				href="#/app/payments/{{payment.id}}"
-				ng-include="'templates/thumbnails/payment.html'"
+				href="#/app/payments/{{ payment.id }}"
+
+				ng-click="viewDetails(payment)"
 			>
+
+				<div class="date">
+					{{ payment.updated_at | date:"dd/MM 'às' h:mma" }}
+				</div>
+				<div class="price">
+					{{ payment.total_value | currency : "R$ " : 2 }}
+				</div>
+				<div class="description">
+					{{ payment.description }}
+				</div>
+
+				<i ng-class="{ 'ion-checkmark': payment.status === 'approved', 'ion-close': payment.status === 'error', 'ion-clock': payment.status === 'pending', 'ion-load-d': payment.status === 'cancelled' }" class="icon"></i>
+
 			</ion-item>
 		</ion-list>
 	</ion-content>

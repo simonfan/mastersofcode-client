@@ -16,6 +16,11 @@ angular.module('semPagar.controllers.charge', ['semPagar.models.payment', 'semPa
 	];
 
 
+	// setTimeout(function () {
+	// 	loadingModal.show();
+	// }, 1000)
+
+
 	$scope.total = 0;
 
 	// shows keyboard and focus phone input
@@ -123,15 +128,14 @@ angular.module('semPagar.controllers.charge', ['semPagar.models.payment', 'semPa
 	// list of available products ordered by rows
 	$scope.availableProducts = [
 		[
-			{ name: 'Hot-Dog', price: 4.5 },
-			{ name: 'Batata', price: 3 },
-			{ name: 'Salada', price: 7 }
+			{ name: 'Pizza', price: 4.5, icon: 'ion-pizza' },
+			{ name: 'Sorvete', price: 3, icon: 'ion-icecream' },
 		],
 
 		[
-			{ name: 'Burger', price: 5.5 },
-			{ name: 'X-Burger', price: 6 },
-			{ name: 'X-Salada', price: 7 },
+			{ name: 'Beer', price: 7, icon: 'ion-beer' },
+			{ name: 'Drink', price: 5.5, icon: 'ion-wineglass' },
+			{ name: 'Café', price: 6, icon: 'ion-coffee' },
 		],
 	];
 
@@ -179,7 +183,11 @@ angular.module('semPagar.controllers.charge', ['semPagar.models.payment', 'semPa
 				description: JSON.stringify($scope.productCart)
 			})
 			.then(function (res) {
-				loadingModal.toStep(1);
+
+				console.log('transaction');
+				console.log(res);
+
+				loadingModal.startPolling(res.data.transaction.id);
 			}, function () {
 				loadingModal.fail();
 			})

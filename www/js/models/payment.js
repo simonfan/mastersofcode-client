@@ -7,12 +7,33 @@ angular.module('semPagar.models.payment', ['semPagar.models.user'])
 	// local storage for transactions
 	var transactions = [];
 
+
+
+	function parseAndTransformTransaction(d) {
+		d.updated_at = new Date(d.updated_at);
+		d.total_value = d.total_value / 100;
+
+		var descriptionJSON
+		try {
+			descriptionJSON = JSON.parse(d.description);
+		} catch (e) {
+			descriptionJSON =[];
+		}
+
+		d.items = _.map(descriptionJSON, function (product) {
+			return product.name
+		});
+
+		d.description = d.items.join(', ');
+	}
+
+
 	/**
 	 * Finds an invoice by id locally
 	 * @param  {[type]} id [description]
 	 * @return {[type]}    [description]
 	 */
-	function findInvoiceById(id) {
+	function findTransactionById(id) {
 		// try finding locally
 		return _.find(transactions, function (i) {
 			return i.id === id;
@@ -34,8 +55,17 @@ angular.module('semPagar.models.payment', ['semPagar.models.user'])
 		.then(function (res) {
 
 			console.log(res)
+
+			// parse all updated date
+			// and convert values
+			// and description
+			var data = res.data.data;
+			_.each(data, parseAndTransformTransaction);
+
+			console.log(data)
+
 			// set to transactions variable
-			transactions = res.data.data;
+			transactions = data;
 			// resolve
 		})
 
@@ -54,7 +84,7 @@ angular.module('semPagar.models.payment', ['semPagar.models.user'])
 			if (_.isString(query)) {
 				// if query is a string, it looking for a single item
 				
-				var invoice = findInvoiceById(query);
+				var invoice = findTransactionById(query);
 
 				if (invoice) {
 					
@@ -62,7 +92,7 @@ angular.module('semPagar.models.payment', ['semPagar.models.user'])
 
 				} else {
 					loadtransactions().then(function (res) {
-						defer.resolve(findInvoiceById(query));
+						defer.resolve(findTransactionById(query));
 					})
 				}
 				
@@ -93,9 +123,13 @@ angular.module('semPagar.models.payment', ['semPagar.models.user'])
 			});
 
 			creationPromise.then(function (res) {
+
+				// parse and transform the transaction data 
+				// ob the object itself
+				parseAndTransformTransaction(res.data.transaction);
+
 				// add transaction to transactions list
 				transactions.unshift(res.data.transaction);
-				
 			});
 
 			return creationPromise;

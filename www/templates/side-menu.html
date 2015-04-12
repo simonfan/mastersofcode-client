@@ -50,6 +50,18 @@
 			<span ng-if="user.isLogged()">cadastrar cliente</span>
 		  </a>
 
+			<a 
+				class="item item-icon-left"
+				ng-if="user.isLogged()"
+
+				menu-close
+				ng-click="logout()"
+			>
+				  <i class="icon ion-power"></i>
+				  logout
+			</a>
+
+
 		</div>
 
 	</ion-content>

@@ -109,7 +109,7 @@
 		<div ng-repeat="products in availableProducts" class="row row-top">
 			<div class="col" ng-repeat="product in products">
 				<button
-					class="button button-block button-positive"
+					class="button button-block icon-left {{ product.icon }} button-energized"
 					ng-click="addToCart(product)"
 				>{{ product.name }}</button>
 			</div>
