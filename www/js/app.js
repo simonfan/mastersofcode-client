@@ -29,18 +29,19 @@ angular.module('semPagar',
 		'alert': true
 	};
 
-	document.addEventListener("deviceready", function(){
-    $cordovaPush.register(config)
-    .then(function(result) {
-    	// Success -- send deviceToken to server, and store for future use
-    	console.log("result: " + result)
-    	User.registerDevice(result.deviceToken);
-    	 $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-    	 	if (notification.alert) {
-        		navigator.notification.alert(notification.alert);
-      		}
-    	 });
-    }, false);
+	document.addEventListener("deviceready", function() {
+	    $cordovaPush.register(config)
+	    .then(function(result) {
+	    	// Success -- send deviceToken to server, and store for future use
+	    	console.log("result: " + result)
+	    	User.registerDevice(result.deviceToken);
+	    	 $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+	    	 	if (notification.alert) {
+	        		navigator.notification.alert(notification.alert);
+	      		}
+	    	 });
+	    }, false);
+	});
 
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
