@@ -33,11 +33,13 @@ angular.module('semPagar.models.user', [])
 
 					console.log(res);
 
-					userId = res.data.id;
+					userId = res.data.user.id;
 
 					userToken = res.data.token;
 
+
 					window.localStorage.setItem('userToken', userToken);
+					window.localStorage.setItem('userId', userId);
 
 				}, function () {
 					isLogged = false;
@@ -63,6 +65,7 @@ angular.module('semPagar.models.user', [])
 				userId = undefined;
 
 				window.localStorage.setItem('userToken', false);
+				window.localStorage.setItem('userId', false);
 
 			}, function () {
 				// fail
@@ -80,6 +83,19 @@ angular.module('semPagar.models.user', [])
 
 		getAccessToken: function () {
 			return userToken;
+		},
+		registerDevice: function (token) {
+			var json = {
+				token: token,
+				platform: 'android',
+				user_id: userId
+			};
+			$http
+			.post('http://sempagar.herokuapp.com/devices', JSON.stringify(json), {
+				headers: {
+					'X-Access-Token': User.getAccessToken(),
+				}
+			})
 		}
 	}
 
