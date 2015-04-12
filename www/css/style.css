@@ -78,3 +78,38 @@
 	width: 70px;
 	height: 70px;
 }
+
+
+
+
+/*FORMS*/
+#products-form .description {
+	float: left;
+	width: 40%;
+}
+
+#products-form .price {
+	text-align: right;
+	float: left;
+	width: 30%;
+}
+
+
+#products-form .button {
+	color: #bbb;
+}
+
+
+#product-listing-scroll {
+	height: 300px;
+	width: 100%;
+}
+
+#product-listing {
+	margin-bottom: 0px;
+}
+
+#total-card {
+	margin-top: -1px;
+	font-weight: bold;
+}

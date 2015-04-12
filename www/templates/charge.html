@@ -12,7 +12,11 @@
 
 
 	<ion-nav-buttons side="right">
-		<button class="button button-clear" ng-click="chargeForm.nextStep()">próximo</button>
+		<button 
+			ng-show="phoneNumberComplete"
+			class="button button-clear"
+			ng-click="chargeForm.nextStep()"
+		>próximo</button>
 	</ion-nav-buttons>
 
 
@@ -33,16 +37,19 @@
 					</div>
 
 				</div>
+
+				<div class="row row-center">
+					<div class="col">
+						<label>
+							insira o número do celular
+						</label>
+					</div>
+				</div>
+
 			</form>
 		</ion-slide>
 		<ion-slide>
 			<form id="products-form" ng-submit="chargeForm.nextStep()">
-
-				<div class="row">
-					<div class="col">
-						<h3>lista de produtos:</h3>
-					</div>
-				</div>
 
 <!-- 				<div 
 					class="row"
@@ -54,37 +61,41 @@
 
 				</div> -->
 
-				<div class="row">
+				<ion-scroll id="product-listing-scroll" zooming="false" direction="y" has-bouncing="false">
+					<ul id="product-listing" class="card list list-inset">
 
-					<div class="col">
+						<li ng-show="!productCart.length > 0" class="item item-icon-right" >
+							<div>
+								nenhum produto para checkout
+							</div>
+						</li>
 
-						<table style="width: 100%;">
-							<tr ng-show="productCart.length > 0">
-								<td>descrição</td>
-								<td>preço</td>
-							</tr>
+						<li class="item item-icon-right" ng-repeat="product in productCart track by $index">
+							<div class="description">
+								{{ product.name }}
+							</div>
+							<div class="price">
+								{{ product.price | currency : "R$ " : 2 }}
+							</div>
+							<a class="button button-icon icon ion-close"
+								ng-click="removeFromCart(product)"
+							></a>
+					    </li>
+					</ul>
+				</ion-scroll>
 
-							<tbody>
+				<div id="total-card" class="card list list-inset">
 
-								<tr ng-repeat="product in productCart track by $index">
-
-									<td>{{ product.name }}</td>
-									<td>{{ product.price | currency : "R$ " : 2 }}</td>
-
-								</tr>
-							</tbody>
-						</table>
+					<div class="item item-icon-right">
+						<div class="description">total</div>
+						<div class="price">{{ total | currency : "R$ " : 2 }}</div>
+						<a ng-show="!productCart.length > 0" class="button button-icon icon ion-ios-cart-outline"></a>
+						<a ng-show="productCart.length > 0" class="button button-icon icon ion-ios-cart"></a>
 					</div>
+					
 				</div>
 
 
-				<!-- total -->
-<!-- 				<div class="row row-center">
-					<div class="col">
-						<input id="phone-input" type="tel" ng-model="chargeForm.values.phone">
-					</div>
-
-				</div> -->
 
 			</form>
 		</ion-slide>

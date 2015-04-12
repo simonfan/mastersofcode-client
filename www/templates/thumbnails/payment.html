@@ -2,11 +2,9 @@
 
 	<div class="{{ payment.status }}">
 
-		<div>
-			{{ payment.consumer_id }}
-		</div>
+		<div class="price">{{ payment.total_value }}</div>
 
-		<div>{{ payment.created_at }}</div>
+		<div>{{ payment.created_at | date:"MM/dd/yyyy 'at' h:mma" }}</div>
 
 		<div>{{ payment.error_message }}</div>
 
@@ -14,7 +12,7 @@
 
 		<div>{{ payment.status }}</div>
 
-		<div>{{ payment.total_value }}</div>
+		<div></div>
 
 	</div>
 

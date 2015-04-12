@@ -93,7 +93,7 @@ angular.module('semPagar.models.user', [])
 			$http
 			.post('http://sempagar.herokuapp.com/devices', JSON.stringify(json), {
 				headers: {
-					'X-Access-Token': User.getAccessToken(),
+					'X-Access-Token': userToken,
 				}
 			})
 		}

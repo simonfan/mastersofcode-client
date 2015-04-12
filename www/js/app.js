@@ -14,6 +14,8 @@ angular.module('semPagar',
 		'semPagar.controllers.login',
 		'semPagar.controllers.charge',
 
+		'ngCordova',
+
 		// models
 		'semPagar.models.user',
 
@@ -23,25 +25,31 @@ angular.module('semPagar',
 )
 
 .run(function($ionicPlatform, $rootScope, $state, User, $cordovaPush) {
-	var iosConfig = {
-		'badge': true,
-		'sound': true,
-		'alert': true
-	};
+	
+	// alert('start')
+	// var iosConfig = {
+	// 	'badge': true,
+	// 	'sound': true,
+	// 	'alert': true
+	// };
 
-	document.addEventListener("deviceready", function() {
-	    $cordovaPush.register(config)
-	    .then(function(result) {
-	    	// Success -- send deviceToken to server, and store for future use
-	    	console.log("result: " + result)
-	    	User.registerDevice(result.deviceToken);
-	    	 $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-	    	 	if (notification.alert) {
-	        		navigator.notification.alert(notification.alert);
-	      		}
-	    	 });
-	    }, false);
-	});
+	// var androidConfig = {
+	// 	"senderID": "477677209906"
+	// };
+
+	// document.addEventListener("deviceready", function() {
+	//     $cordovaPush.register(androidConfig)
+	//     .then(function(result) {
+	//     	// Success -- send deviceToken to server, and store for future use
+	//     	console.log("result: " + result)
+	//     	User.registerDevice(result.deviceToken);
+	//     	 $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+	//     	 	if (notification.alert) {
+	//         		navigator.notification.alert(notification.alert);
+	//       		}
+	//     	 });
+	//     }, false);
+	// });
 
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

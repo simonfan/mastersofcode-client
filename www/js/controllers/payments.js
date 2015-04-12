@@ -5,6 +5,8 @@ angular.module('semPagar.controllers.payments', [])
 
 		$scope.payments = payments;
 
+		console.log(payments);
+
 	});
 
 	$scope.openCharge = function () {
